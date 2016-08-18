@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Avanti Pizza Belmont Calculator</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<!--<script src="calculator.js"></script>-->
+	</head>
+	
+	<body>
+	<div id="container">
+		<header>
+			<h1> Avanti Pizza Belmont </h1>
+		</header>
+		<div id="order-builder">
+		
+		<div id="pizza-builder">
+		
+		<h2>Pizza </h2>
+		<form id="pizza-size">
+		<fieldset>
+		<legend>Pizza Size</legend>
+		<label for="sizeSlice">Slice</label>
+		<input type="radio" name="pizzaSize" id="sizeSlice" value="Slice">
+		
+		<label for="size12">12"</label>
+		<input type="radio" name="pizzaSize" id="size12" value="12 Inch">
+		
+		<label for="size14">14"</label>
+		<input type="radio" name="pizzaSize" id="size14" value="14 Inch">
+		
+		<label for="size16">16"</label>
+		<input type="radio" name="pizzaSize" id="size16" value="16 Inch">
+		
+		<label for="size18">18"</label>
+		<input type="radio" name="pizzaSize" id="size18" value="18 Inch">
+		</fieldset>
+		
+		<fieldset id="toppings">
+		<legend id>Toppings</legend>
+	
+		</fieldset>
+		<input type="button" value="Add Pizza To Order">
+		</form>
+		</div><!-- end of #pizza-builder-->
+		
+		<h2>Entrees </h2>
+		<fieldset>
+		<legend>Salad</legend>
+		<div class="saladType">
+			<input type="checkbox" id="caesar">
+			<label for="caesar">Caesar Salad</label>
+
+			<input type="radio" name="caesarSize" class="side" value="side">
+			<label for="side">Side</label>
+			<input type="radio" name="caesarSize" class="dinner" value="dinner">
+			<label for="side">Dinner</label>
+		</div>
+		
+		<div class="saladType">
+			<input type="checkbox" id="chknCaesar">
+			<label for="chknCaesar">Chicken Caesar Salad</label>
+
+			<input type="radio" name="chknCaesarSize" class="side" value="side">
+			<label for="side">Side</label>
+			<input type="radio" name="chknCaesarSize" class="dinner" value="dinner">
+			<label for="side">Dinner</label>
+			
+		</div>
+		
+		<div class="saladType">
+			<input type="checkbox" id="chineseSalad">
+			<label for="chineseSalad">Chinese Salad</label>
+
+			<input type="radio" name="chineseSalad" class="side" value="side">
+			<label for="side">Side</label>
+			<input type="radio" name="chineseSalad" class="dinner" value="dinner">
+			<label for="side">Dinner</label>
+		</div>
+		
+		<div class="saladType">
+			<input type="checkbox" id="chknChineseSalad">
+			<label for="chineseSalad">Chicken Chinese Salad</label>
+
+			<input type="radio" name="chknChineseSalad" class="side" value="side">
+			<label for="side">Side</label>
+			<input type="radio" name="chknChineseSalad" class="dinner" value="dinner">			
+			<label for="side">Dinner</label>
+		</div>
+		
+		<div class="saladType">
+			<input type="checkbox" id="gardenSalad">
+			<label for="gardenSalad">Garden Salad</label>
+
+			<input type="radio" name="gardenSalad" class="side" value="side">
+			<label for="side">Side</label>
+			<input type="radio" name="gardenSalad" class="dinner" value="dinner">
+			<label for="side">Dinner</label>
+		</div>
+		
+		<div class="saladType">
+			<input type="checkbox" id="greekSalad">
+			<label for="greekSalad">Greek Salad</label>
+			
+			<input type="radio" name="greekSalad" class="side" value="side">
+			<label for="side">Side</label>
+			<input type="radio" name="greekSalad" class="dinner" value="dinner">
+			<label for="side">Dinner</label>
+			
+		</div>
+		
+		<div class="saladType">
+			<input type="checkbox" id="spinachSalad">
+			<label for="spinachSalad">Spinach Salad</label>
+
+			<input type="radio" name="spinachSalad" class="side" value="side">
+			<label for="side">Side</label>
+			<input type="radio" name="spinachSalad" class="dinner" value="dinner">
+			<label for="side">Dinner</label>
+		</div>
+		
+		<input type="button" value="Add Salad To Order">
+		
+		</fieldset>
+		<fieldset>
+		<legend>Pasta</legend>
+		</fieldset>
+		<fieldset>
+		<legend>Sandwiches</legend>
+		</fieldset>
+
+		<h2>Appetizers</h2>
+		<h2>Dessert</h2>
+		<h2>Drinks </h2>
+		</div><!-- end of #order-builder-->
+		<div id="calculator-div">
+		
+		</div> <!-- end of #calculator-div -->
+		
+		<div id="queue-div">
+		
+		</div> <!-- end of #queue-div -->
+	</div> <!-- end of #container -->
+	
+	</body>
+	
+	<script src="menuList.js"></script>
+</html>
