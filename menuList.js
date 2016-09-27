@@ -1,76 +1,200 @@
-// ToppingsList
-// 0 = Name
-// 1 = Slice, sandwich, calzone
-// 2 = 12, 3 = 14, 4 = 16, 5 = 18
 
-var toppingsList = {
-"Anchovies": ["Anchovies", .8, 2, 2.7, 3.5, 4.5],
-"Artichoke Hearts" : ["Artichoke Hearts", 1, 1.35, 1.75, 2.25],
-"Bacon": ["Bacon", 1, 1.35, 1.75, 2.25],
-"Basil" : ["Basil", .8, 2, 2.7, 3.5, 4.5],
-"Bell Peppers" : ["Bell Peppers", 1, 1.35, 1.75, 2.25], 
-"Black Olives" : ["Black Olives", 1, 1.35, 1.75, 2.25], 
-"Broccoli" : ["Broccoli", 1, 1.35, 1.75, 2.25], 
-"Capers" : ["Capers", 1, 1.35, 1.75, 2.25],
-"Caramelized Onion" : ["Caramelized Onions", 1, 1.35, 1.75, 2.25], 
-"Carrot" : ["Carrot", 1, 1.35, 1.75, 2.25], 
-"Chicken Apple Sausage" : ["Chicken Apple Sausage", 1, 1.35, 1.75, 2.25], 
-"Clams" : ["Clams", .8, 2, 2.7, 3.5, 4.5], 
-"Feta Cheese" : ["Feta Cheese", .8, 2, 2.7, 3.5, 4.5],
-"Garlic" : ["Garlic", 1, 1.35, 1.75, 2.25], 
-"Goat Cheese" : ["Goat Cheese", .8, 2, 2.7, 3.5, 4.5], 
-"Gorgonzola Cheese" : ["Gorgonzola", .8, 2, 2.7, 3.5, 4.5], 
-"Grilled Chicken" : ["Grilled Chicken", .8, 2, 2.7, 3.5, 4.5], 
-"Ground Beef" : ["Ground Beef", 1, 1.35, 1.75, 2.25],
-"Ham" : ["Ham", 1, 1.35, 1.75, 2.25], 
-"Italian Sausage" : ["Italian Sausage", 1, 1.35, 1.75, 2.25], 
-"Jalapeños" : ["Jalapeños", 1, 1.35, 1.75, 2.25], 
-"Kalamata Olives" : ["Kalamata Olives", 1, 1.35, 1.75, 2.25], 
-"Meatball" : ["Meatball", 1, 1.35, 1.75, 2.25], 
-"Mushrooms" : ["Mushrooms", 1, 1.35, 1.75, 2.25], 
-"Onion" : ["Onion", 1, 1.35, 1.75, 2.25],
-"Oregano" : ["Oregano", 1, 1.35, 1.75, 2.25], 
-"Pepperoni" : ["Pepperoni", 1, 1.35, 1.75, 2.25], 
-"Pesto" : ["Pesto", .8, 2, 2.7, 3.5, 4.5], 
-"Pineapple" : ["Pineapple", 1, 1.35, 1.75, 2.25], 
-"Red Onion" : ["Red Onion", 1, 1.35, 1.75, 2.25], 
-"Ricotta Cheese" : ["Ricotta Cheese", 1, 1.35, 1.75, 2.25], 
-"Roasted Eggplant" : ["Roasted Eggplant", 1, 1.35, 1.75, 2.25], 
-"Roasted Red Peppers" : ["Roasted Red Peppers", 1, 1.35, 1.75, 2.25], 
-"Roasted Potatoes" : ["Roasted Potatoes", 1, 1.35, 1.75, 2.25], 
-"Salami" : ["Salami", 1, 1.35, 1.75, 2.25], 
-"Spinach" : ["Spinach", 1, 1.35, 1.75, 2.25], 
-"Sun-dried Tomatoes" : ["Sun-dried Tomatoes", 1, 1.35, 1.75, 2.25], 
-"Tomatoes" : ["Tomatoes", 1, 1.35, 1.75, 2.25], 
-"Zucchini" : ["Zucchini", 1, 1.35, 1.75, 2.25],
+// Pizza Cost Information
+// Size to cost per topping
+var pizzaCost = {
+	"sizeSlice": [3.75, .40],
+	"size12": [12, 1],
+	"size14": [14.70, 1.35],
+	"size16": [17.60, 1.75],
+	"size18": [21.60, 2.25]
+	
+};
+
+// Salad List
+// 0 is ID name, 1 is Display name, 2 is side price, 3 is dinner price
+var saladList = {
+	"caesar": ["caesar","Caesar Salad", 4.75, 7.4],
+	"chknCaesar": ["chknCaesar","Chicken Caesar Salad", 6, 9],
+	"chinese": ["chinese","Chinese Salad", 6, 9],
+	"chknChinese": ["chknChinese","Chicken Chinese Salad", 7, 10],
+	"gardenSalad": ["gardenSalad","Garden Salad", 4.75, 7.4],
+	"grkSalad": ["grkSalad","Greek Salad", 5.5, 8],
+	"spinachSalad": ["spinachSalad","Spinach Salad", 5.5, 8]	
+};
+
+var pushSalads = function(saladList){
+	for(salads in saladList){
+		var saladID = saladList[salads][0];
+		var saladName = saladList[salads][1];
+		$("#salads").append('<div id="'+saladID+'">'+'<input type="checkbox" id="'+saladID+'" value="'+saladName+'"> <label for="'+saladID+'">'+saladName+'</label>' +
+		'<input type="radio" name="'+saladID+'Size" class="side" value="side">' +
+		'<label for="side">Side</label>' +
+		'<input type="radio" name="'+saladID+'Size" class="dinner" value="dinner">' +
+		'<label for="side">Dinner</label>');
+	}
+};
+
+$(document).ready(function(){
+	pushSalads(saladList);
+});
+
+// Pasta List
+// 0 is ID name, 1 is display name, 2 is default price, 3 is modified price (adding meatballs or prawns, for example)
+// When printing, maybe have an if statement that checks for hasOwnProperty "add" ?
+
+var pastaList = {
+
+"fettAlfredo": ["fettAlfredo","Fettuccine Alfredo", 12,[]],
+"fettWith": ["fettWith","Fettuccine With Clams/Chicken/Pesto", 14, []  ],
+"lasagna": ["lasagna","Lasagna",15,[]],
+"ravioli": ["ravioli","Ravioli",13,[]],
+"pestoRavioli": ["pestoRavioli","Ravioli With Pesto",13,[]],
+"spaghetti": ["spaghetti","Spaghetti",12,["Add Meatballs",13]],
+"meatballs": ["meatballs","Extra Meatballs/Side of Meatballs", 5,[]]
 }
 
-// Push toppings list to HTML
-
-function pushToppings(toppings){
-	for(toppings in toppingsList){
-		var toppingName = toppingsList[toppings][0];
-		$("#toppings").append('<input type="checkbox" id="'+toppingName+'" value="'+toppingName+'"> <label for="'+toppingName+'">'+toppingName+'</label>');
+var pushPasta = function(pastaList){
+	for(pastas in pastaList){
+		var pastaID = pastaList[pastas][0];
+		var pastaName = pastaList[pastas][1];
+		$("#pastas").append('<div id="'+pastaID+'">'+'<input type="checkbox" id="'+pastaID+'" value="'+pastaName+'"> <label for="'+pastaID+'">'+pastaName+'</label>');
+		
+		if(pastaList[pastas][3].length > 0){
+			var addModifierName = pastaList[pastas][3][0];
+			$('#pastas').append('<input type="checkbox" id="'+addModifierName+'" value="'+addModifierName+'"> <label for="'+addModifierName+'"> ' +addModifierName+'</label>' + '</div>');
+		} else {
+			$('#pastas').append('</div');
+		}
 	}
 }
 
-pushToppings(toppingsList);
+$(document).ready(function(){
+	pushPasta(pastaList);
+});
 
-// Pasta List
-// 0 is name, 1 is price, 2 is price with a modifier (adding meatballs or prawns, for example), 3 is gluten free price
-var pastaList = {
+// Sandwich List
+// 0 is id name for appending, 1 is display name for inserting text
+// 2 is regular price, 3 is price modifier (if exists)
 
-"Fettuccine Alfredo": [],
-"Fettuccine With Clams": [],
-"Add Prawns": [],
-"Fettuccine with Chicken": [],
-"Fettuccine with Pesto": [],
-"Fettuccine with Mushroom": [],
-"Lasagna (Marinara or Meat Sauce)": [],
-"Ravioli (Cheese or Meat Ravioli, Marinara or Meat Sauce)": [],
-"Ravioli w/ Pesto": [],
-"Spaghetti (Marinara or Meat Sauce)": [],
-"Add Meatballs": [],
-"Extra Meatballs / Side of Meatballs": [],
+var sandwichList = {
+	"calzone": ["calzone", "Calzone", 13, 0.4],
+	"grilledChkn": ["grilledChkn", "Grilled Chicken Sub", 8, 0.4],
+	"meatballSub": ["meatballSub", "Meatball Sub", 8, 0],
+	"pizzaSub": ["pizzaSub", "Pizza Sub", 7, 0.4],
+	"veggieSub": ["veggieSub", "Vegetarian Sub", 7, 0],
+}
 
+var pushSandwiches = function(sandwichList){
+	for(sandwiches in sandwichList){
+		var sandwichID = sandwichList[sandwiches][0];
+		var sandwichName = sandwichList[sandwiches][1];
+		
+		$('#sandwiches').append('<div id="'+sandwichID+'">'+'<input type="checkbox" id="'+sandwichID+'" value="'+sandwichID+'"> <label for="'+sandwichID+'"> ' +sandwichName+'</label>');
+		if(sandwichList[sandwiches][3] > 0){
+			$("#sandwiches").append('<label for="sandwichToppingNumber"> Add Toppings</label>'+'<input type="number" name="sandwichToppingNumber" value="0" step="1">'+'</div>');
+		} else {
+			$("#sandwiches").append('</div>');
+		}
+	}
+}
+
+$(document).ready(function(){
+	pushSandwiches(sandwichList);
+});
+
+// Appetizers
+// 0 is ID, 1 is display name, 2 is price, 3 is modifier price if available.
+
+var appetizerList = {
+	"bruschetta": ["bruschetta", "Bruschetta", 4.75],
+	"garlicBread": ["garlicBread", "Garlic Bread", 3.95],
+	"cheesyGarlicBread": ["cheesyGarlicBread", "Garlic Bread with Cheese", 4.45, ["Add side of Marinara", .4]],
+	"pestoGarlicBread": ["pestoGarlicBread", "Garlic Bread with Pesto", 5],
+	"garlicFries": ["garlicFries","Spicy Garlic Fries",5],
+	"buffaloWings": ["buffaloWings", "Spicy Buffalo Wings", 9]
+	
+}
+
+var pushAppetizers = function(appetizerList){
+	for(appetizers in appetizerList){
+		var appetizerID = appetizerList[appetizers][0];
+		var appetizerName = appetizerList[appetizers][1];
+		
+		$('#appetizers').append('<div id="'+appetizerID+'">'+'<input type="checkbox" id="'+appetizerID+'" value="'+appetizerID+'"> <label for="'+appetizerID+'"> ' +appetizerName+'</label>');
+		if(appetizerList[appetizers][3] > 0){
+			var modifierTextApp = appetizerList[appetizers][3][0];
+			$("#appetizers").append('<label for="'+appetizerID+'">'+ modifierTextApp +'</label>'+'<input type="checkbox" name="'+appetizerID+'">'+'</div>');
+		} else {
+			$("#appetizers").append('</div>');
+		}
+	}
+	
+}
+
+$(document).ready(function(){
+	pushAppetizers(appetizerList);
+});
+
+// Dessert list, 0 is ID, 1 is display name, 2 is price
+var dessertList = {
+	"cCake": ["cCake", "Carrot Cake", 3.5],
+	"tiramisu": ["tiramisu", "Tiramisu", 3.5],
+	"cheeseCake": ["cheeseCake", "Cheese Cake", 2.75]
+}
+
+var pushDesserts = function(dessertList) {
+	for(cakes in dessertList){
+		var dessertID = dessertList[cakes][0];
+		var dessertName = dessertList[cakes][1];
+		$("#desserts").append('<div id="'+dessertID+'">'+'<label for="dessertQuantity">'+dessertName+' Quantity</label>'+'<input type="number" name="dessertQuantity" value="0" step="1" id="'+dessertID+'">');
+	}
+}
+
+$(document).ready(function(){
+	pushDesserts(dessertList);
+});
+
+// Drinks, follows the same convention as desserts
+var drinksList = {
+	"cannedDrink": ["cannedDrink","Canned Soda", 1.35],
+	"kerns": ["kerns", "Kerns", 1.8],
+	"snappleGatorade": ["snappleGatorade","Snapple/Gatorade", 2.75],
+	"juice": ["juice", "Juice", 2],
+	"2L": ["2L","2L", 3.2],
+	"domBeer": ["domBeer","Domestic Beer", 3],
+	"impBeer": ["impBeer", "Imported Beer", 4],
+	"wineGlass": ["wineGlass","Wine Glass", 5],
+	"wineBottle": ["wineBottle","Wine Bottle", 16],
+	"expresso": ["expresso","Expresso", 2],
+	"cappu": ["cappu","Cappuccino", 2.5],
+	"latte": ["latte","Latte", 3],
+	"mocha": ["mocha","Mocha", 3.5],
+	"americano": ["americano","Americano", 2],
+	"cof": ["cof","Coffee", 2],
+	"syrup": ["syrup","Syrup Shot", .25]
+	
+}
+
+var pushDrinks = function(drinkList) {
+	for(drinks in drinkList){
+		var drinkID = drinksList[drinks][0];
+		var drinkName = drinksList[drinks][1];
+		$("#drinks").append('<div id="'+drinkID+'">'+'<label for="drinkQuantity">'+drinkName+' Quantity</label>'+'<input type="number" name="drinkQuantity" value="0" step="1" id="'+drinkID+'">');
+	}
+	$("#drinks").append('<input type="button" value="Add Drinks To Order">');
+	
+};
+
+$(document).ready(function(){
+	pushDrinks(drinksList);
+});
+
+
+
+// Objects in Queue
+
+var orderQueue = {
+	"orderNumber": 0,
+	"orderCost": 0,
+	"orderTime": []
 }

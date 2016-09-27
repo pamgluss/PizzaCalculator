@@ -4,7 +4,10 @@
 		<meta charset="utf-8">
 		<title>Avanti Pizza Belmont Calculator</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-		<!--<script src="calculator.js"></script>-->
+		<script src="menuList.js"></script>
+		<script src="calculator.js"></script>
+		<script src="interface.js"></script>
+	
 	</head>
 	
 	<body>
@@ -12,129 +15,117 @@
 		<header>
 			<h1> Avanti Pizza Belmont </h1>
 		</header>
+		
 		<div id="order-builder">
 		
 		<div id="pizza-builder">
 		
-		<h2>Pizza </h2>
-		<form id="pizza-size">
-		<fieldset>
-		<legend>Pizza Size</legend>
-		<label for="sizeSlice">Slice</label>
-		<input type="radio" name="pizzaSize" id="sizeSlice" value="Slice">
+		<h2 id="pizza-toggle">Pizza</h2>
 		
-		<label for="size12">12"</label>
-		<input type="radio" name="pizzaSize" id="size12" value="12 Inch">
-		
-		<label for="size14">14"</label>
-		<input type="radio" name="pizzaSize" id="size14" value="14 Inch">
-		
-		<label for="size16">16"</label>
-		<input type="radio" name="pizzaSize" id="size16" value="16 Inch">
-		
-		<label for="size18">18"</label>
-		<input type="radio" name="pizzaSize" id="size18" value="18 Inch">
-		</fieldset>
-		
-		<fieldset id="toppings">
-		<legend id>Toppings</legend>
-	
-		</fieldset>
-		<input type="button" value="Add Pizza To Order">
-		</form>
+		<div id="pizza-hide">
+			<form id="pizza-input">
+				<fieldset>
+				<legend>Pizza Size</legend>
+				<label for="sizeSlice">Slice</label>
+				<input type="radio" name="pizzaSize" id="sizeSlice" value="sizeSlice">
+				
+				<label for="size12">12"</label>
+				<input type="radio" name="pizzaSize" id="size12" value="size12">
+				
+				<label for="size14">14"</label>
+				<input type="radio" name="pizzaSize" id="size14" value="size14">
+				
+				<label for="size16">16"</label>
+				<input type="radio" name="pizzaSize" id="size16" value="size16">
+				
+				<label for="size18">18"</label>
+				<input type="radio" name="pizzaSize" id="size18" value="size18">
+				</fieldset>
+				
+				<fieldset id="toppings">
+					<legend>Toppings</legend>
+					<div id="toppings-wholepizza">
+						<h3> Whole Pizza </h3>
+						<label for="wholePizzaToppingNumber"> Add Toppings</label><input type="number" id ="wholePizzaToppingNumber" name="wholePizzaToppingNumber" value="0" step="1">
+					</div>
+					
+					<div id="toppings-halfhalf">
+						<h3> Half and Half Pizza </h3>
+						<label for="firstHalfToppingNumber"> 1st Side</label><input type="number" id ="firstHalfToppingNumber" name="firstHalfToppingNumber" value="0" step="1">
+						<label for="secondHalfToppingNumber"> 2nd Side</label><input type="number" id="secondHalfToppingNumber" name="secondHalfToppingNumber" value="0" step="1">
+					</div>
+					<input type="button" value="Add Pizza To Order" id="addPizza" onclick="addToOrder('pizza-input');">
+				</fieldset>
+				
+			</form><!--end of form #pizza-input -->
+		</div><!-- end of #pizza hide-->
 		</div><!-- end of #pizza-builder-->
 		
-		<h2>Entrees </h2>
-		<fieldset>
-		<legend>Salad</legend>
-		<div class="saladType">
-			<input type="checkbox" id="caesar">
-			<label for="caesar">Caesar Salad</label>
+		<div id="other-food">
+		<h2 id="food-toggle">Other Food </h2>
+		<div id="food-hide">
+			<form id="otherFood-input">
+				<fieldset>
+				<legend>Salad</legend>
+				<div id="salads">
+				
+				</div> <!-- end of #salads-->
+				</fieldset>
+				
+				<fieldset>
+				<legend>Pasta</legend>
+				<div id="pastas">
+				
+				</div><!-- end of #pastas-->
+				</fieldset>
+				
+				<fieldset>
+				<legend>Sandwiches</legend>
+				<div id="sandwiches">
+				
+				</div>
+				</fieldset>
 
-			<input type="radio" name="caesarSize" class="side" value="side">
-			<label for="side">Side</label>
-			<input type="radio" name="caesarSize" class="dinner" value="dinner">
-			<label for="side">Dinner</label>
-		</div>
+				<fieldset>
+				<legend>Appetizers</legend>
+				<div id="appetizers">
+				
+				</div>
+				</fieldset>
+				
+				<fieldset>
+				<legend>Dessert</legend>
+				<div id="desserts">
+				
+				</div>
+				</fieldset>
+				<input type="button" name="otherFoodSubmit" id="otherFoodSubmit" value="Add Food to Order">
+			</form><!-- end of form #otherFood-input -->
+		</div><!-- end of food-hide-->
+		</div> <!-- end of #other-food-->
 		
-		<div class="saladType">
-			<input type="checkbox" id="chknCaesar">
-			<label for="chknCaesar">Chicken Caesar Salad</label>
-
-			<input type="radio" name="chknCaesarSize" class="side" value="side">
-			<label for="side">Side</label>
-			<input type="radio" name="chknCaesarSize" class="dinner" value="dinner">
-			<label for="side">Dinner</label>
-			
-		</div>
-		
-		<div class="saladType">
-			<input type="checkbox" id="chineseSalad">
-			<label for="chineseSalad">Chinese Salad</label>
-
-			<input type="radio" name="chineseSalad" class="side" value="side">
-			<label for="side">Side</label>
-			<input type="radio" name="chineseSalad" class="dinner" value="dinner">
-			<label for="side">Dinner</label>
-		</div>
-		
-		<div class="saladType">
-			<input type="checkbox" id="chknChineseSalad">
-			<label for="chineseSalad">Chicken Chinese Salad</label>
-
-			<input type="radio" name="chknChineseSalad" class="side" value="side">
-			<label for="side">Side</label>
-			<input type="radio" name="chknChineseSalad" class="dinner" value="dinner">			
-			<label for="side">Dinner</label>
-		</div>
-		
-		<div class="saladType">
-			<input type="checkbox" id="gardenSalad">
-			<label for="gardenSalad">Garden Salad</label>
-
-			<input type="radio" name="gardenSalad" class="side" value="side">
-			<label for="side">Side</label>
-			<input type="radio" name="gardenSalad" class="dinner" value="dinner">
-			<label for="side">Dinner</label>
-		</div>
-		
-		<div class="saladType">
-			<input type="checkbox" id="greekSalad">
-			<label for="greekSalad">Greek Salad</label>
-			
-			<input type="radio" name="greekSalad" class="side" value="side">
-			<label for="side">Side</label>
-			<input type="radio" name="greekSalad" class="dinner" value="dinner">
-			<label for="side">Dinner</label>
-			
-		</div>
-		
-		<div class="saladType">
-			<input type="checkbox" id="spinachSalad">
-			<label for="spinachSalad">Spinach Salad</label>
-
-			<input type="radio" name="spinachSalad" class="side" value="side">
-			<label for="side">Side</label>
-			<input type="radio" name="spinachSalad" class="dinner" value="dinner">
-			<label for="side">Dinner</label>
-		</div>
-		
-		<input type="button" value="Add Salad To Order">
-		
-		</fieldset>
-		<fieldset>
-		<legend>Pasta</legend>
-		</fieldset>
-		<fieldset>
-		<legend>Sandwiches</legend>
-		</fieldset>
-
-		<h2>Appetizers</h2>
-		<h2>Dessert</h2>
-		<h2>Drinks </h2>
+		<div id="drinksOuter">
+			<h2 id="drinks-toggle"> Drinks </h2>
+			<div id="drinks-hide">
+				<form id="drinks-input">
+					<fieldset>
+						<div id="drinks">
+					
+						</div>
+					</fieldset>
+				</form><!-- end of form drinks-input -->
+			</div><!-- end of drinks-hide-->
+			</div><!-- end of drinksOuter-->
 		</div><!-- end of #order-builder-->
-		<div id="calculator-div">
 		
+		
+		<div id="calculator-div">
+			<div id="currentOrder">
+				<h2> Current Order </h2>
+				
+				<input type="button" value="Calculate" id="calculateBtn">
+				<input type="button" value="Confirm Order" id="pushToQueue">
+			</div>
 		</div> <!-- end of #calculator-div -->
 		
 		<div id="queue-div">
@@ -144,5 +135,5 @@
 	
 	</body>
 	
-	<script src="menuList.js"></script>
+	
 </html>
