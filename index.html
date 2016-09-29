@@ -55,6 +55,7 @@
 						<label for="secondHalfToppingNumber"> 2nd Side</label><input type="number" id="secondHalfToppingNumber" name="secondHalfToppingNumber" value="0" step="1">
 					</div>
 					<input type="button" value="Add Pizza To Order" id="addPizza" onclick="addToOrder('pizza-input');">
+					<p id="pizzaError"> </p>
 				</fieldset>
 				
 			</form><!--end of form #pizza-input -->
@@ -123,9 +124,10 @@
 			<div id="currentOrder">
 				<h2> Current Order </h2>
 				
-				<input type="button" value="Calculate" id="calculateBtn">
-				<input type="button" value="Confirm Order" id="pushToQueue">
+				
 			</div>
+			<input type="button" value="Calculate" id="calculateBtn">
+			<input type="button" value="Confirm Order" id="pushToQueue">
 		</div> <!-- end of #calculator-div -->
 		
 		<div id="queue-div">

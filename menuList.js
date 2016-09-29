@@ -189,12 +189,41 @@ $(document).ready(function(){
 	pushDrinks(drinksList);
 });
 
-
+// Current Order 
+// Catch items here, and then when orders are completed, push to the queue
+var currentOrderObj = {
+	"number": 0,
+	"type": " ",
+	"price": 0
+}
+var currentOrderArray = [];
 
 // Objects in Queue
 
-var orderQueue = {
-	"orderNumber": 0,
-	"orderCost": 0,
-	"orderTime": []
+function orderQueue(){
+	this._oldestIndex = 1;
+	this._newestIndex = 1;
+	this._storage = {};
+};
+
+orderQueue.prototype.size = function(){
+	return this._newestIndex - this._oldestIndex;
+};
+
+orderQueue.prototype.enqueue = function(data){
+	this._storage[this._newestIndex] = data;
+	this._newestIndex ++;
+};
+
+orderQueue.prototype.dequeue = function(){
+	var oldestData = this._oldestIndex;
+	var newestData = this._newestIndex;
+	var deletedData;
+	
+	if(oldestData !== newestData){
+		deletedData = this._storage[oldestData];
+		delete this._storage[oldestData];
+		this.oldestData++;
+		return deletedData;
+	}
 }

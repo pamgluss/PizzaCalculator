@@ -1,6 +1,7 @@
 var addToOrder = function(formID){
 		
 	if(formID === "pizza-input"){
+		
 		var pizzaSizeRadio = document.getElementsByName('pizzaSize');
 		for (var i = 0, length = pizzaSizeRadio.length; i < length; i++) {
 			if (pizzaSizeRadio[i].checked) {
@@ -17,18 +18,37 @@ var addToOrder = function(formID){
 		currentData = $("#"+formID).serializeArray();
 		console.log(currentData);
 		
-		var wpToppingsNum = currentData[0].value;
+		for(var j = 0; j < currentData.length; j++){
+			if(currentData[j].name === "wholePizzaToppingNumber"){
+				var wpToppingsNum = currentData[j].value;
+			} else if (currentData[j].name === "firstHalfToppingNumber"){
+				var fhToppingsNum = currentData[j].value;
+			} else if (currentData[j].name === "secondHalfToppingNumber"){
+				var shToppingsNum = currentData[j].value;
+			}
+		}
+		
+		
 		console.log(wpToppingsNum);
 		
 		// fh = first half, sh = second half
-		var fhToppingsNum = currentData[1].value;
-		var shToppingsNum = currentData[2].value;
-		console.log(fhToppingsNum + " " + shToppingsNum);
 		
 		var finalPizzaCost;
-		finalPizzaCost = basePizzaPrice + (perToppingsPrice * wpToppingsNum) + (((fhToppingsNum + shToppingsNum)/2)*perToppingsPrice);
+		var totalToppings = ((fhToppingsNum + shToppingsNum)/2) + wpToppingsNum;
+		finalPizzaCost = basePizzaPrice + (perToppingsPrice * totalToppings);
 		
 		console.log(finalPizzaCost);
+		// Update the currentOrderObj, then push to currentOrderArray
+		currentOrderObj.type = "pizza";
+		currentOrderObj.price = finalPizzaCost;
+		
+		currentOrderArray.push(currentOrderObj);
+		
+		console.log(currentOrderObj);
+		console.log(currentOrderArray);
+		
+		$("#currentOrder").append(totalToppings + " topping " + currentOrderObj.type + ": "+currentOrderObj.price);
+		
 
 	} // end of if statement checking for pizza ID
 } // end of addToOrder function
