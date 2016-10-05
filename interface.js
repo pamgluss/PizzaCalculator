@@ -3,6 +3,7 @@ $("#pizza-hide").hide();
 $("#food-hide").hide();
 $("#drinks-hide").hide();
 
+
 $("#pizza-toggle").click(function(){
 	$("#pizza-hide").toggle(800);
 });
@@ -14,3 +15,4 @@ $("#food-toggle").click(function(){
 $("#drinks-toggle").click(function(){
 	$("#drinks-hide").toggle(800);
 });
+

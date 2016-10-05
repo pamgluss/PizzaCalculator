@@ -6,7 +6,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 		<script src="menuList.js"></script>
 		<script src="calculator.js"></script>
-		<script src="interface.js"></script>
+		
 	
 	</head>
 	
@@ -26,27 +26,29 @@
 			<form id="pizza-input">
 				<fieldset>
 				<legend>Pizza Size</legend>
-				<label for="sizeSlice">Slice</label>
+				
 				<input type="radio" name="pizzaSize" id="sizeSlice" value="sizeSlice">
+				<label for="sizeSlice">Slice</label>
 				
-				<label for="size12">12"</label>
 				<input type="radio" name="pizzaSize" id="size12" value="size12">
+				<label for="size12">12"</label>
 				
-				<label for="size14">14"</label>
 				<input type="radio" name="pizzaSize" id="size14" value="size14">
+				<label for="size14">14"</label>
 				
-				<label for="size16">16"</label>
 				<input type="radio" name="pizzaSize" id="size16" value="size16">
+				<label for="size16">16"</label>
 				
-				<label for="size18">18"</label>
 				<input type="radio" name="pizzaSize" id="size18" value="size18">
+				<label for="size18">18"</label>
+				
 				</fieldset>
 				
 				<fieldset id="toppings">
 					<legend>Toppings</legend>
 					<div id="toppings-wholepizza">
 						<h3> Whole Pizza </h3>
-						<label for="wholePizzaToppingNumber"> Add Toppings</label><input type="number" id ="wholePizzaToppingNumber" name="wholePizzaToppingNumber" value="0" step="1">
+						<label for="wholePizzaToppingNumber"> Add Toppings</label><input type="number" id ="wholePizzaToppingNumber" name="wholePizzaToppingNumber" value="0" step="1" min="0" max="10">
 					</div>
 					
 					<div id="toppings-halfhalf">
@@ -54,7 +56,7 @@
 						<label for="firstHalfToppingNumber"> 1st Side</label><input type="number" id ="firstHalfToppingNumber" name="firstHalfToppingNumber" value="0" step="1">
 						<label for="secondHalfToppingNumber"> 2nd Side</label><input type="number" id="secondHalfToppingNumber" name="secondHalfToppingNumber" value="0" step="1">
 					</div>
-					<input type="button" value="Add Pizza To Order" id="addPizza" onclick="addToOrder('pizza-input');">
+					<input type="button" value="Add Pizza To Order" id="pizza-input" onclick="addToOrder('pizza-input');">
 					<p id="pizzaError"> </p>
 				</fieldset>
 				
@@ -100,7 +102,8 @@
 				
 				</div>
 				</fieldset>
-				<input type="button" name="otherFoodSubmit" id="otherFoodSubmit" value="Add Food to Order">
+				<input type="button" name="otherFoodSubmit" id="otherFoodSubmit" value="Add Food to Order" onclick="addToOrder('otherFood-input');">
+				<p id="otherfood-error"> </p>
 			</form><!-- end of form #otherFood-input -->
 		</div><!-- end of food-hide-->
 		</div> <!-- end of #other-food-->
@@ -137,5 +140,5 @@
 	
 	</body>
 	
-	
+	<!--<script src="interface.js"></script>-->
 </html>

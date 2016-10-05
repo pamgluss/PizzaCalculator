@@ -26,8 +26,8 @@ var pushSalads = function(saladList){
 	for(salads in saladList){
 		var saladID = saladList[salads][0];
 		var saladName = saladList[salads][1];
-		$("#salads").append('<div id="'+saladID+'">'+'<input type="checkbox" id="'+saladID+'" value="'+saladName+'"> <label for="'+saladID+'">'+saladName+'</label>' +
-		'<input type="radio" name="'+saladID+'Size" class="side" value="side">' +
+		$("#salads").append('<div id="'+saladID+'">'+'<input type="checkbox" name="'+saladID+'Check" id="'+saladID+'"> <label for="'+saladID+'">'+saladName+'</label>'
+		+'<input type="radio" name="'+saladID+'Size" class="side" value="side">' +
 		'<label for="side">Side</label>' +
 		'<input type="radio" name="'+saladID+'Size" class="dinner" value="dinner">' +
 		'<label for="side">Dinner</label>');
@@ -57,11 +57,12 @@ var pushPasta = function(pastaList){
 	for(pastas in pastaList){
 		var pastaID = pastaList[pastas][0];
 		var pastaName = pastaList[pastas][1];
-		$("#pastas").append('<div id="'+pastaID+'">'+'<input type="checkbox" id="'+pastaID+'" value="'+pastaName+'"> <label for="'+pastaID+'">'+pastaName+'</label>');
+		$("#pastas").append('<div id="'+pastaID+'">'+'<input type="checkbox" name="'+pastaName+'" id="'+pastaID+'" value="'+pastaList[pastaID][2]+'"> <label for="'+pastaID+'">'+pastaName+'</label>');
 		
 		if(pastaList[pastas][3].length > 0){
 			var addModifierName = pastaList[pastas][3][0];
-			$('#pastas').append('<input type="checkbox" id="'+addModifierName+'" value="'+addModifierName+'"> <label for="'+addModifierName+'"> ' +addModifierName+'</label>' + '</div>');
+			$('#pastas').append('<input type="checkbox" name="'+addModifierName+'" id="'+addModifierName+'" value="'+pastaList[pastaID][3][1]+'"> <label for="'+addModifierName+'"> ' +addModifierName+'</label>' + '</div>');
+		
 		} else {
 			$('#pastas').append('</div');
 		}
@@ -89,9 +90,9 @@ var pushSandwiches = function(sandwichList){
 		var sandwichID = sandwichList[sandwiches][0];
 		var sandwichName = sandwichList[sandwiches][1];
 		
-		$('#sandwiches').append('<div id="'+sandwichID+'">'+'<input type="checkbox" id="'+sandwichID+'" value="'+sandwichID+'"> <label for="'+sandwichID+'"> ' +sandwichName+'</label>');
+		$('#sandwiches').append('<div id="'+sandwichID+'">'+'<input type="checkbox" name="'+sandwichName+'" id="'+sandwichID+'" value="'+sandwichList[sandwichID][2]+'"> <label for="'+sandwichID+'"> ' +sandwichName+'</label>');
 		if(sandwichList[sandwiches][3] > 0){
-			$("#sandwiches").append('<label for="sandwichToppingNumber"> Add Toppings</label>'+'<input type="number" name="sandwichToppingNumber" value="0" step="1">'+'</div>');
+			$("#sandwiches").append('<label for="sandwichToppingNumber"> Add Toppings</label>'+'<input type="number" id="'+sandwichID+'toppingNmbr" value="0" step="1" min="0" max="5">'+'</div>');
 		} else {
 			$("#sandwiches").append('</div>');
 		}
@@ -110,7 +111,6 @@ var appetizerList = {
 	"garlicBread": ["garlicBread", "Garlic Bread", 3.95],
 	"cheesyGarlicBread": ["cheesyGarlicBread", "Garlic Bread with Cheese", 4.45, ["Add side of Marinara", .4]],
 	"pestoGarlicBread": ["pestoGarlicBread", "Garlic Bread with Pesto", 5],
-	"garlicFries": ["garlicFries","Spicy Garlic Fries",5],
 	"buffaloWings": ["buffaloWings", "Spicy Buffalo Wings", 9]
 	
 }
@@ -120,10 +120,10 @@ var pushAppetizers = function(appetizerList){
 		var appetizerID = appetizerList[appetizers][0];
 		var appetizerName = appetizerList[appetizers][1];
 		
-		$('#appetizers').append('<div id="'+appetizerID+'">'+'<input type="checkbox" id="'+appetizerID+'" value="'+appetizerID+'"> <label for="'+appetizerID+'"> ' +appetizerName+'</label>');
-		if(appetizerList[appetizers][3] > 0){
+		$('#appetizers').append('<div id="'+appetizerID+'">'+'<input type="checkbox" name="'+appetizerName+'" id="'+appetizerID+'" value="'+appetizerList[appetizerID][2]+'"> <label for="'+appetizerID+'"> ' +appetizerName+'</label>');
+		if(appetizerList[appetizers][3]){
 			var modifierTextApp = appetizerList[appetizers][3][0];
-			$("#appetizers").append('<label for="'+appetizerID+'">'+ modifierTextApp +'</label>'+'<input type="checkbox" name="'+appetizerID+'">'+'</div>');
+			$("#appetizers").append('<input type="checkbox" name="'+modifierTextApp+'">'+'</div>'+'<label for="'+modifierTextApp+'">'+ modifierTextApp +'</label>');
 		} else {
 			$("#appetizers").append('</div>');
 		}
@@ -146,7 +146,7 @@ var pushDesserts = function(dessertList) {
 	for(cakes in dessertList){
 		var dessertID = dessertList[cakes][0];
 		var dessertName = dessertList[cakes][1];
-		$("#desserts").append('<div id="'+dessertID+'">'+'<label for="dessertQuantity">'+dessertName+' Quantity</label>'+'<input type="number" name="dessertQuantity" value="0" step="1" id="'+dessertID+'">');
+		$("#desserts").append('<div id="'+dessertID+'">'+'<input type="checkbox" name="'+dessertID+'Check" id="'+dessertID+'" value="'+dessertList[dessertID][2]+'">'+'<label for="dessertCheck">'+dessertName+'</label>');
 	}
 }
 
