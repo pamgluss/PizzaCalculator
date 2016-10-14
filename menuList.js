@@ -26,7 +26,7 @@ var pushSalads = function(saladList){
 	for(salads in saladList){
 		var saladID = saladList[salads][0];
 		var saladName = saladList[salads][1];
-		$("#salads").append('<div id="'+saladID+'">'+'<input type="checkbox" name="'+saladID+'Check" id="'+saladID+'"> <label for="'+saladID+'">'+saladName+'</label>'
+		$("#salads").append('<div id="'+saladID+'">'+'<input type="checkbox" name="'+saladID+'" id="'+saladID+'"> <label for="'+saladID+'">'+saladName+'</label>'
 		+'<input type="radio" name="'+saladID+'Size" class="side" value="side">' +
 		'<label for="side">Side</label>' +
 		'<input type="radio" name="'+saladID+'Size" class="dinner" value="dinner">' +
