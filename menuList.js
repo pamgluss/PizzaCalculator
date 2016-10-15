@@ -92,7 +92,7 @@ var pushSandwiches = function(sandwichList){
 		
 		$('#sandwiches').append('<div id="'+sandwichID+'">'+'<input type="checkbox" name="'+sandwichName+'" id="'+sandwichID+'" value="'+sandwichList[sandwichID][2]+'"> <label for="'+sandwichID+'"> ' +sandwichName+'</label>');
 		if(sandwichList[sandwiches][3] > 0){
-			$("#sandwiches").append('<label for="sandwichToppingNumber"> Add Toppings</label>'+'<input type="number" id="'+sandwichID+'toppingNmbr" value="0" step="1" min="0" max="5">'+'</div>');
+			$("#sandwiches").append('<label for="sandwichToppingNumber"> Add Toppings</label>'+'<input type="number" id="'+sandwichID+'ToppingNmbr" name="'+sandwichName+"ToppingNmbr"+'" value="0" step="1" min="0" max="5">'+'</div>');
 		} else {
 			$("#sandwiches").append('</div>');
 		}
@@ -146,7 +146,7 @@ var pushDesserts = function(dessertList) {
 	for(cakes in dessertList){
 		var dessertID = dessertList[cakes][0];
 		var dessertName = dessertList[cakes][1];
-		$("#desserts").append('<div id="'+dessertID+'">'+'<input type="checkbox" name="'+dessertID+'Check" id="'+dessertID+'" value="'+dessertList[dessertID][2]+'">'+'<label for="dessertCheck">'+dessertName+'</label>');
+		$("#desserts").append('<div id="'+dessertID+'">'+'<input type="checkbox" name="'+dessertName+'" id="'+dessertID+'" value="'+dessertList[dessertID][2]+'">'+'<label for="dessertCheck">'+dessertName+'</label>');
 	}
 }
 

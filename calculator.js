@@ -64,15 +64,25 @@ var addToOrder = function(formID){
 				
 			// Everything in other food should have a proper name
 				var otherFoodName = currentData[k].name;
-				
+			
+			// Basically we don't want it to iterate over the salad size radio buttons, so we're skipping over them here
+			// We can have this skip over the sandwich topping number values too
+				if(otherFoodName.includes("Size" || "ToppingNmbr")){
+					
+				} else {
 			// But the price depends on whether it's a salad or something else (yay, fun)
 			// So for the time being we aren't sure what the price is:
 				var otherFoodPrice;
 			
 			// Unless of course, the price is static, so we check for that
 				if(parseInt(currentData[k].value)){
-					otherFoodPrice = currentData[k].value;
-					console.log(otherFoodPrice);
+					otherFoodPrice = parseInt(currentData[k].value);
+					currentOrderObj.type = otherFoodName;
+					
+			// Sandwiches have topping #s (because this couldn't be simple)
+			// So we need to look for whether or not it HAS the option
+			// Whether the option has been selected
+			// And then adding the topping surcharge to the price. Yeah. 
 			
 			// If it isn't, we look for the radio buttons that determine the size
 				} else {
@@ -80,20 +90,23 @@ var addToOrder = function(formID){
 					var othFoodRadioBtns = othFoodDiv.find("input[type='radio']");
 					for(buttons in othFoodRadioBtns){
 						if(othFoodRadioBtns[buttons].checked){
+							// This value vvv is going to be side or dinner, so don't freakout and parseInt later
 							var othFoodSize = othFoodRadioBtns[buttons].value;
-							console.log(othFoodSize);
+
 							
 					// I'm not super proud of this code here, I need to make it scale-able
+					// It just checks if the size is either dinner/side. 
 							if(othFoodSize === "side"){
 								otherFoodPrice = saladList[otherFoodName][2];
-								console.log(otherFoodPrice);
+								currentOrderObj.type = "Side "+saladList[otherFoodName][1];
+
 							} else if (othFoodSize === "dinner"){
 								otherFoodPrice = saladList[otherFoodName][3];
-								console.log(otherFoodPrice);
+								currentOrderObj.type = "Dinner "+saladList[otherFoodName][1];
+
 							}
 							
 					// Once you've found a checked radio button, end the loop
-					// Note to self: Do I have a backup plan for if you forget to select a radio button? Fack
 							break;
 						}
 					}
@@ -101,19 +114,20 @@ var addToOrder = function(formID){
 					if(othFoodSize === undefined){
 						$("#otherfood-error").text("Salad can't be added without a size selection.");
 					}
+					
 				} // End of if/else checking to see if elements have value or not
 				
 				// Now we should have the name and price of our food so:
 				
-				currentOrderObj.type = ;
+				
 				currentOrderObj.price = otherFoodPrice;
 		
 				currentOrderArray.push(currentOrderObj);
 
 		
-				$("#currentOrder").append("<div class='currOrdItem'>"+currentOrderObj.type + ": "+currentOrderObj.price.toFixed(2)+"</div>");
+				$("#currentOrder").append("<div class='currOrdItem'>"+currentOrderObj.type+": "+currentOrderObj.price.toFixed(2)+"</div>");
 				
-				
+			}
 				
 			};
 			
